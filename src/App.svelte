@@ -1,41 +1,47 @@
 <script>
-  import svelteLogo from './assets/svelte.svg'
-  import viteLogo from '/vite.svg'
-  import Counter from './lib/Counter.svelte'
+  import svelteLogo from "./assets/svelte.svg";
+  import viteLogo from "/vite.svg";
+  import Counter from "./lib/Counter.svelte";
+  import Question from "./lib/Question.svelte";
 </script>
 
 <main>
   <div class="gameboard">
-    <div class="card">
-      <h3 class="card__comandname">Команда №1</h3>
-      <Counter />
+
+    <div class="gameboard__question question">
+      <div class="question__card card">
+        <h3 class="card__comandname">Вопрос</h3>
+        <Question />
+      </div>
     </div>
-    <div class="card">
-      <h3 class="card__comandname">Команда №2</h3>
-      <Counter />
-    </div>
-    <div class="card">
-      <h3 class="card__comandname">Команда №3</h3>
-      <Counter />
+    <div class="gameboard__score score">
+      <div class="score__card card">
+        <h3 class="card__comandname">Команда №1</h3>
+        <Counter />
+      </div>
+      <div class="score__card card">
+        <h3 class="card__comandname">Команда №2</h3>
+        <Counter />
+      </div>
+      <div class="score__card card">
+        <h3 class="card__comandname">Команда №3</h3>
+        <Counter />
+      </div>
     </div>
   </div>
-
-  <p class="read-the-docs">
-    
-  </p>
 </main>
 
 <style>
-  .read-the-docs {
-    color: #888;
-  }
   .gameboard {
     display: flex;
   }
+  .gameboard__score {
+    display: flex;
+  }
+
   .card {
-    width: 300px;
     font-size: 40px;
-    background-color: #ECECEC;
+    background-color: #ececec;
     margin: 0px 20px;
     border-radius: 10px;
     display: flex;
@@ -48,7 +54,15 @@
     padding-bottom: 10px;
   }
 
-  .card__comandname { 
+  .score__card {
+    width: 300px;
+  }
+
+  .question {
+    flex-grow: 1;
+  }
+
+  .card__comandname {
     margin-bottom: 20px;
   }
 </style>

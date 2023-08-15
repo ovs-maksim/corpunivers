@@ -160,7 +160,7 @@
     color: #fff;
     font-weight: 600;
     position: absolute;
-    top: 75px;
+    top: 83px;
     left: 33px;
     text-align: center;
     width: 113px;
