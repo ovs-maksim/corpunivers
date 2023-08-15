@@ -1,0 +1,9 @@
+pipeline:
+  publish-api-docker:
+    image: plugins/docker
+    registry: hub.git.erut.ru
+    repo: hub.git.erut.ru/mcd/korpuniversitet 
+    tags:
+      - master
+    when:
+      branch: ["master"]   
