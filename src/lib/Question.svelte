@@ -72,6 +72,7 @@
   let CURRENT_DIFFICULTY = 'easy';
   let CURRENT_ROUND = 1;
   let CURRENT_ROUND_QUESTION = 0;
+  let LAST_QUESTION_ID;
   const COMMAND_NUM = 3;
   let randomQuestionId;
   let passedQuestionsIds = [];
@@ -118,11 +119,13 @@
 
   const prev = () => {
     // CURRENT_ROUND_QUESTION--;
+    answer = '';
 
     const writeQuestion = LAST_QUESTION_ID => {
       const CURRENT_QUESTION = QUESTION_LIST.question_list.find(question => question.id === LAST_QUESTION_ID);
       console.log(LAST_QUESTION_ID);
       question = CURRENT_QUESTION.text;
+      randomQuestionId = LAST_QUESTION_ID;
       if (CURRENT_QUESTION.image) {
         questionImage = CURRENT_QUESTION.image;
       } else { questionImage = undefined }
@@ -136,26 +139,23 @@
     if (CURRENT_ROUND_QUESTION <= COMMAND_NUM && CURRENT_ROUND_QUESTION !== 1) {
       CURRENT_ROUND_QUESTION--;
       passedQuestionsIds.pop();
-      const LAST_QUESTION_ID = passedQuestionsIds[passedQuestionsIds.length-1];
+      LAST_QUESTION_ID = passedQuestionsIds[passedQuestionsIds.length-1];
       console.log('LAST_QUESTION_ID: ', LAST_QUESTION_ID);
       writeQuestion(LAST_QUESTION_ID);
     } else if (CURRENT_ROUND_QUESTION === 1) {
       CURRENT_ROUND--;
       CURRENT_ROUND_QUESTION = 3;
       passedQuestionsIds.pop();
-      const LAST_QUESTION_ID = passedQuestionsIds[passedQuestionsIds.length-1];
+      LAST_QUESTION_ID = passedQuestionsIds[passedQuestionsIds.length-1];
       console.log('LAST_QUESTION_ID: ', LAST_QUESTION_ID);
       const LAST_QUESTION_DIFFICULTY = QUESTION_LIST.question_list.find(question => question.id === LAST_QUESTION_ID).difficulty
-      // Если в списке доступных сложностей нет сложности предыдущего вопроса, то добавим её туда
-/*       if (!DIFFICULTY_LIST.includes(LAST_QUESTION_DIFFICULTY)) {
-        DIFFICULTY_LIST.push(LAST_QUESTION_DIFFICULTY);
-      } */
+
       CURRENT_DIFFICULTY = LAST_QUESTION_DIFFICULTY;
       writeQuestion(LAST_QUESTION_ID);
     }
 
     if (CURRENT_ROUND_QUESTION === 3) {
-      const LAST_QUESTION_ID = passedQuestionsIds[passedQuestionsIds.length-1];
+      LAST_QUESTION_ID = passedQuestionsIds[passedQuestionsIds.length-1];
       const LAST_QUESTION_DIFFICULTY = QUESTION_LIST.question_list.find(question => question.id === LAST_QUESTION_ID).difficulty
       // Если в списке доступных сложностей нет сложности предыдущего вопроса, то добавим её туда
       if (!DIFFICULTY_LIST.includes(LAST_QUESTION_DIFFICULTY)) {
